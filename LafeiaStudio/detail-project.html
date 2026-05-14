@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Portfolio - Kreative Studio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f7ff;
+            color: #2c2c3e;
+            line-height: 1.6;
+        }
+
+    
+
+
+        /* Main Container */
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Project Header */
+        .project-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .project-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c2c3e;
+        }
+
+        .project-category-badge.poster {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+        }
+
+        .project-category-badge.website {
+            background: linear-gradient(135deg, #ffd89b 0%, #ffc857 100%);
+            color: #2c2c3e;
+        }
+
+        .project-description {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .meta-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .meta-content h3 {
+            font-size: 0.95rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-content p {
+            font-size: 1.1rem;
+            color: #2c2c3e;
+            font-weight: 500;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #2c2c3e;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .content-section p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        
+
+       
+
+
+       
+
+       
+    </style>
+</head>
+<body>
+    <!-- Header -->
+<div id="header"></div>
+
+    <!-- Main Content -->
+    <div class="detail-container" style="padding-top: 100px;">
+        <!-- Project Header -->
+        <div class="project-header">
+            <div class="project-info">
+                <h1 id="projectTitle">Novel "Mimpi di Langit"</h1>
+                <p class="project-description" id="projectDescription">
+                    Layouting buku fiksi dengan desain modern dan minimalis yang menciptakan pengalaman membaca yang nyaman dan menyenangkan
+                </p>
+                
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fas fa-calendar"></i></div>
+                        <div class="meta-content">
+                            <h3>Tahun Penyelesaian</h3>
+                            <p id="projectYear">2024</p>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fa-solid fa-file"></i></div>
+                        <div class="meta-content">
+                            <h3>Demo</h3>
+                            <p id="projectClient">Klik disini</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-image" id="projectMainImage">📚</div>
+        </div>
+
+
+        <!-- Overview Section -->
+        <div class="content-section" style="margin-top: 50px;">
+            <h2>Gambaran Umum Proyek</h2>
+            <p id="overviewText">
+                Proyek ini merupakan layouting buku novel fiksi yang menceritakan perjalanan spiritual seorang tokoh utama menemukan makna kehidupan. Dengan pendekatan desain yang modern namun tetap mempertahankan sentuhan tradisional, kami menciptakan desain yang dapat meningkatkan pengalaman membaca bagi setiap pembaca.
+            </p>
+        </div>
+
+    </div>
+
+<div id="footer"></div>
+
+</body>
+</html>
+<script src="js/LoadHeadFoot.js"></script>

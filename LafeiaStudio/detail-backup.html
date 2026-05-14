@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Portfolio - Kreative Studio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f7ff;
+            color: #2c2c3e;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logo:hover {
+            opacity: 0.9;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom: 1px solid #eee;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #764ba2;
+        }
+
+        .breadcrumb span {
+            color: #999;
+            margin: 0 0.5rem;
+        }
+
+        /* Main Container */
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Project Header */
+        .project-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .project-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c2c3e;
+        }
+
+        .project-category-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .project-category-badge.poster {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+        }
+
+        .project-category-badge.website {
+            background: linear-gradient(135deg, #ffd89b 0%, #ffc857 100%);
+            color: #2c2c3e;
+        }
+
+        .project-description {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .meta-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .meta-content h3 {
+            font-size: 0.95rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-content p {
+            font-size: 1.1rem;
+            color: #2c2c3e;
+            font-weight: 500;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c2c3e;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item:hover::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .gallery-item:hover .gallery-label {
+            transform: translateY(0);
+        }
+
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .detail-box {
+            background: #f8f7ff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .detail-box h4 {
+            color: #667eea;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-box p {
+            color: #2c2c3e;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #2c2c3e;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .content-section p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .challenge-box {
+            background: #fff3cd;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ffc857;
+        }
+
+        .challenge-box h3 {
+            color: #856404;
+            margin-bottom: 0.8rem;
+        }
+
+        .solution-box {
+            background: #d4edda;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #28a745;
+        }
+
+        .solution-box h3 {
+            color: #155724;
+            margin-bottom: 0.8rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Process Timeline */
+        .timeline {
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 60px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background: linear-gradient(180deg, #667eea 0%, transparent 100%);
+        }
+
+        .timeline-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2c2c3e;
+        }
+
+        .timeline-content p {
+            color: #666;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+        }
+
+        .nav-btn {
+            padding: 1rem 2rem;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-btn.back {
+            background: #f8f7ff;
+        }
+
+        .nav-btn.next {
+            margin-left: auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Testimonial */
+        .testimonial-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-section p {
+            color: white;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .author-info strong {
+            display: block;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c2c3e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-header {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image {
+                height: 300px;
+                font-size: 3rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .nav-btn.next {
+                margin-left: 0;
+            }
+
+            .detail-container {
+                padding: 2rem 1rem;
+            }
+
+            .gallery-section,
+            .content-section {
+                padding: 2rem;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 50px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .modal-close:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="creative-agency.html" class="logo">
+                <i class="fas fa-palette"></i>
+                <span>Kreative Studio</span>
+            </a>
+            <a href="creative-agency.html">← Kembali ke Portfolio</a>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="creative-agency.html">Beranda</a>
+        <span>/</span>
+        <a href="creative-agency.html">Portfolio</a>
+        <span>/</span>
+        <span id="breadcrumbTitle">Detail Proyek</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="detail-container">
+        <!-- Project Header -->
+        <div class="project-header">
+            <div class="project-info">
+                <span class="project-category-badge" id="projectCategory">Buku</span>
+                <h1 id="projectTitle">Novel "Mimpi di Langit"</h1>
+                <p class="project-description" id="projectDescription">
+                    Layouting buku fiksi dengan desain modern dan minimalis yang menciptakan pengalaman membaca yang nyaman dan menyenangkan
+                </p>
+                
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fas fa-calendar"></i></div>
+                        <div class="meta-content">
+                            <h3>Tahun Penyelesaian</h3>
+                            <p id="projectYear">2024</p>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fas fa-user"></i></div>
+                        <div class="meta-content">
+                            <h3>Klien</h3>
+                            <p id="projectClient">PT. Penerbit Karya Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fas fa-users"></i></div>
+                        <div class="meta-content">
+                            <h3>Tim Proyek</h3>
+                            <p id="projectTeam">3 Desainer + 1 Project Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-image" id="projectMainImage">📚</div>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="details-grid" id="detailsGrid">
+            <div class="detail-box">
+                <h4>Format</h4>
+                <p id="detailFormat">A5 (210x148mm)</p>
+            </div>
+            <div class="detail-box">
+                <h4>Jumlah Halaman</h4>
+                <p id="detailPages">350 halaman</p>
+            </div>
+            <div class="detail-box">
+                <h4>Jenis Kertas</h4>
+                <p id="detailPaper">Art Paper 150gsm</p>
+            </div>
+            <div class="detail-box">
+                <h4>Teknik Cetak</h4>
+                <p id="detailPrint">Full Color CMYK</p>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery-section">
+            <h2>Galeri Proyek</h2>
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-label">Cover Depan</div>
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-label">Halaman Dalam</div>
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-label">Detail Layout</div>
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <i class="fas fa-image"></i>
+                    <div class="gallery-label">Mockup 3D</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="content-section">
+            <h2>Gambaran Umum Proyek</h2>
+            <p id="overviewText">
+                Proyek ini merupakan layouting buku novel fiksi yang menceritakan perjalanan spiritual seorang tokoh utama menemukan makna kehidupan. Dengan pendekatan desain yang modern namun tetap mempertahankan sentuhan tradisional, kami menciptakan desain yang dapat meningkatkan pengalaman membaca bagi setiap pembaca.
+            </p>
+        </div>
+
+        <!-- Challenges & Solutions -->
+        <div class="content-section">
+            <h2>Tantangan & Solusi</h2>
+            
+            <div class="challenge-box">
+                <h3><i class="fas fa-exclamation-circle"></i> Tantangan</h3>
+                <p id="challengeText">
+                    Buku dengan 350 halaman memerlukan konsistensi desain yang sangat ketat. Selain itu, klien menginginkan layout yang modern namun tetap mudah dibaca, dengan integrasi gambar ilustrasi yang tidak mengganggu narasi.
+                </p>
+            </div>
+
+            <div class="solution-box">
+                <h3><i class="fas fa-check-circle"></i> Solusi</h3>
+                <p id="solutionText">
+                    Kami mengembangkan design system yang komprehensif dengan template halaman yang konsisten. Menggunakan typography hirarki yang jelas, margin dan padding yang terukur, serta grid system yang fleksibel. Ilustrasi ditempatkan secara strategis untuk memperkuat pesan tanpa mengurangi kenyamanan membaca.
+                </p>
+            </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="content-section">
+            <h2>Fitur & Keunggulan Desain</h2>
+            <ul class="features-list">
+                <li>Desain cover yang eye-catching dan memorable</li>
+                <li>Layout halaman yang konsisten dan profesional</li>
+                <li>Tipografi yang dipilih khusus untuk keterbacaan optimal</li>
+                <li>Integrasi gambar dan ilustrasi yang harmonis</li>
+                <li>Design headers dan footers yang menarik</li>
+                <li>Siap cetak dengan resolusi dan color profile yang tepat</li>
+                <li>Desain copyright page dan preliminary pages</li>
+                <li>Optimasi untuk berbagai ukuran kertas cetak</li>
+            </ul>
+        </div>
+
+        <!-- Creative Process -->
+        <div class="content-section">
+            <h2>Proses Kreatif</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="timeline-content">
+                        <h3>Konsep & Brainstorming</h3>
+                        <p>Melakukan diskusi mendalam dengan klien untuk memahami visi, target audience, dan esensi cerita. Mengembangkan konsep desain yang sesuai dengan genre dan tone buku.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-pencil-alt"></i></div>
+                    <div class="timeline-content">
+                        <h3>Desain & Wireframe</h3>
+                        <p>Membuat wireframe dan mood board untuk visualisasi awal. Memilih font, warna, dan elemen desain yang tepat untuk menciptakan identitas visual buku.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-brush"></i></div>
+                    <div class="timeline-content">
+                        <h3>Desain Detail</h3>
+                        <p>Mengerjakan layout halaman per halaman dengan teliti, memastikan konsistensi visual dan keterbacaan. Mendesain cover, spine, dan elemen-elemen khusus lainnya.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-redo"></i></div>
+                    <div class="timeline-content">
+                        <h3>Revisi & Penyempurnaan</h3>
+                        <p>Mengumpulkan feedback dari klien dan melakukan revisi yang diperlukan. Memastikan setiap detail sesuai dengan harapan dan spesifikasi cetak.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-check"></i></div>
+                    <div class="timeline-content">
+                        <h3>Finalisasi & Produksi</h3>
+                        <p>Melakukan final check, color correction, dan quality assurance. Menyiapkan file final dengan spesifikasi cetak yang tepat untuk percetakan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial-section">
+            <p id="testimonialText">
+                "Tim Kreative Studio sangat profesional dan memahami kebutuhan kami. Desain buku yang mereka hasilkan sangat memuaskan, dengan detail yang sempurna dan timeline yang tepat. Kami sangat merekomendasikan mereka untuk proyek desain Anda!"
+            </p>
+            <div class="testimonial-author">
+                <div class="author-avatar"><i class="fas fa-user"></i></div>
+                <div class="author-info">
+                    <strong id="authorName">Budi Santoso</strong>
+                    <p id="authorRole">CEO PT. Penerbit Karya Indonesia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="creative-agency.html" class="nav-btn back">
+                <i class="fas fa-arrow-left"></i> Kembali ke Portfolio
+            </a>
+            <a href="#" class="nav-btn next" onclick="loadNextProject(event)">
+                Lihat Proyek Lainnya <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal for Gallery -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Kreative Studio. Semua hak cipta dilindungi. Dibuat dengan <span style="color: #ff6b6b;">❤</span> untuk kreativitas</p>
+    </footer>
+
+    <script>
+        // Data Proyek
+        const projects = {
+            'novel-mimpi-langit': {
+                title: 'Novel "Mimpi di Langit"',
+                category: 'Buku',
+                categoryClass: '',
+                icon: '📚',
+                year: '2024',
+                client: 'PT. Penerbit Karya Indonesia',
+                team: '3 Desainer + 1 Project Manager',
+                description: 'Layouting buku fiksi dengan desain modern dan minimalis yang menciptakan pengalaman membaca yang nyaman dan menyenangkan',
+                format: 'A5 (210x148mm)',
+                pages: '350 halaman',
+                paper: 'Art Paper 150gsm',
+                print: 'Full Color CMYK',
+                overview: 'Proyek ini merupakan layouting buku novel fiksi yang menceritakan perjalanan spiritual seorang tokoh utama menemukan makna kehidupan. Dengan pendekatan desain yang modern namun tetap mempertahankan sentuhan tradisional, kami menciptakan desain yang dapat meningkatkan pengalaman membaca bagi setiap pembaca.',
+                challenge: 'Buku dengan 350 halaman memerlukan konsistensi desain yang sangat ketat. Selain itu, klien menginginkan layout yang modern namun tetap mudah dibaca, dengan integrasi gambar ilustrasi yang tidak mengganggu narasi.',
+                solution: 'Kami mengembangkan design system yang komprehensif dengan template halaman yang konsisten. Menggunakan typography hirarki yang jelas, margin dan padding yang terukur, serta grid system yang fleksibel. Ilustrasi ditempatkan secara strategis untuk memperkuat pesan tanpa mengurangi kenyamanan membaca.',
+                testimonial: '"Tim Kreative Studio sangat profesional dan memahami kebutuhan kami. Desain buku yang mereka hasilkan sangat memuaskan, dengan detail yang sempurna dan timeline yang tepat. Kami sangat merekomendasikan mereka untuk proyek desain Anda!"',
+                author: 'Budi Santoso',
+                role: 'CEO PT. Penerbit Karya Indonesia'
+            },
+            'buku-resep-nusantara': {
+                title: 'Buku Resep Nusantara',
+                category: 'Buku',
+                categoryClass: '',
+                icon: '📖',
+                year: '2024',
+                client: 'PT. Kuliner Nusantara',
+                team: '2 Desainer + Food Photographer + 1 Project Manager',
+                description: 'Desain cookbook dengan layout fotografi produk yang menggugah selera dan typography yang menarik',
+                format: 'A4 (210x297mm)',
+                pages: '240 halaman',
+                paper: 'Glossy Paper 200gsm',
+                print: 'Full Color CMYK + Special Coating',
+                overview: 'Buku resep Nusantara ini adalah koleksi dari berbagai masakan tradisional Indonesia yang didesain dengan presentasi visual yang menarik. Setiap resep dilengkapi dengan fotografi profesional, step-by-step instructions, dan lifestyle photography yang menginspirasi pembaca untuk memasak sendiri.',
+                challenge: 'Menggabungkan fotografis produk berkualitas tinggi dengan layout yang tidak crowded. Klien memiliki lebih dari 200 resep dan setiap resep harus memiliki presentasi yang konsisten namun tetap variatif secara visual.',
+                solution: 'Kami membuat design system yang fleksibel dengan multiple layout templates untuk berbagai tipe resep. Fotografi dipilih dengan cermat dan di-crop secara strategis untuk memaksimalkan visual appeal. Penggunaan white space yang baik membuat layout tidak terasa overwhelmed meskipun dengan konten yang banyak.',
+                testimonial: '"Buku resep kami jadi terlihat very premium dan professional. Pembeli sangat appreciate dengan desain yang menarik ini. Penjualan meningkat signifikan!"',
+                author: 'Siti Nurhaliza',
+                role: 'Founder PT. Kuliner Nusantara'
+            },
+            'poster-festival-musik': {
+                title: 'Poster Festival Musik',
+                category: 'Poster',
+                categoryClass: 'poster',
+                icon: '🎨',
+                year: '2024',
+                client: 'Yayasan Seni Musik Indonesia',
+                team: '2 Desainer + 1 Ilustrator',
+                description: 'Desain poster event dengan visual yang energik dan eye-catching yang menarik perhatian calon pengunjung',
+                format: 'A2 (420x594mm)',
+                pages: 'Single Page',
+                paper: 'Premium Poster Paper 250gsm',
+                print: 'Full Color CMYK + Gloss Laminate',
+                overview: 'Poster festival musik ini dirancang untuk menarik perhatian generasi muda dengan visual yang dinamis dan energik. Menggabungkan elemen musik, warna-warna cerah, dan typography yang bold untuk menciptakan poster yang memorable dan shareable di media sosial.',
+                challenge: 'Festival musik memiliki lebih dari 20 artis lokal dan internasional yang perlu ditampilkan. Poster harus informatif namun tetap tidak cluttered, serta eye-catching dan dapat berfungsi baik dalam ukuran besar maupun kecil untuk media digital.',
+                solution: 'Kami menggunakan visual hierarchy yang kuat untuk mengorganisir informasi. Grafis abstrak yang energik menjadi focal point utama, sementara informasi praktis (tanggal, lokasi, lineup) ditempatkan dengan jelas di area sekunder. Design ini juga di-optimize untuk berbagai ukuran dan format, dari billboard hingga Instagram post.',
+                testimonial: '"Posternya sangat menarik! Social media engagement kami meningkat drastis dan event terjual habis. Terima kasih Kreative Studio!"',
+                author: 'Ahmad Wijaya',
+                role: 'Director Yayasan Seni Musik Indonesia'
+            },
+            'movie-poster': {
+                title: 'Movie Poster Campaign',
+                category: 'Poster',
+                categoryClass: 'poster',
+                icon: '🎬',
+                year: '2024',
+                client: 'PT. Sinematik Indonesia',
+                team: '3 Desainer + 1 Senior Creative Director',
+                description: 'Poster film dengan visual dramatis dan typography yang menarik untuk kampanye marketing film',
+                format: 'A1 (594x841mm)',
+                pages: 'Single Design',
+                paper: 'Premium Poster Paper 250gsm',
+                print: 'Full Color CMYK + Spot UV',
+                overview: 'Kampanye poster film ini menampilkan visual dramatis yang menangkap essence dari cerita film. Dengan penggunaan fotografi sinematik, color grading profesional, dan typography yang bold, poster ini dirancang untuk menjadi media promosi yang powerful di berbagai lokasi cetak.',
+                challenge: 'Poster harus dapat berkomunikasi secara visual tentang genre dan tone film hanya dalam satu gambar. Klien juga memerlukan multiple variations untuk berbagai campaign channels dan target demographics yang berbeda.',
+                solution: 'Kami mengembangkan multiple poster designs dengan berbagai fokus visual dan messaging untuk target audience yang berbeda. Setiap design mempertahankan identitas visual yang konsisten namun dengan tone dan emphasis yang disesuaikan. Kami juga menyiapkan digital version yang optimal untuk berbagai platform.',
+                testimonial: '"Campaign poster ini sangat effective dalam menarik penonton. Feedback dari bioskop sangat positif tentang visual impact dari posternya!"',
+                author: 'Rudi Hartono',
+                role: 'Marketing Director PT. Sinematik Indonesia'
+            },
+            'toko-online-fashion': {
+                title: 'Portal Toko Online Fashion',
+                category: 'Website',
+                categoryClass: 'website',
+                icon: '💼',
+                year: '2024',
+                client: 'PT. Fashion Online Indonesia',
+                team: '2 UI/UX Desainer + 2 Front-end Developer + 1 Project Manager',
+                description: 'Website e-commerce responsif dengan user interface yang intuitif dan user experience yang optimal untuk penjualan online',
+                format: 'Responsive Web Design',
+                pages: '15+ Main Pages',
+                paper: 'Web Platform',
+                print: 'Fully Functional',
+                overview: 'Website e-commerce fashion ini dirancang dengan fokus pada user experience yang smooth dan conversion rate yang tinggi. Dengan interface yang clean, navigasi yang intuitif, dan product showcase yang menarik, website ini memudahkan customer untuk menemukan dan membeli produk.',
+                challenge: 'Menampilkan ratusan produk dengan berbagai kategori tanpa membuat interface terasa overwhelmed. Website juga harus dioptimalkan untuk mobile users (70% traffic), memiliki performa loading cepat, dan mudah di-manage untuk inventory system.',
+                solution: 'Kami menggunakan advanced filtering dan search functionality untuk memudahkan product discovery. Design dioptimalkan untuk mobile-first approach dengan touch-friendly interface. Shopping cart dan checkout process disederhanakan untuk mengurangi cart abandonment. Backend diintegrasikan dengan inventory system untuk real-time stock management.',
+                testimonial: '"Website ini benar-benar mengubah bisnis kami. User experience sangat smooth, dan conversion rate meningkat 45% dalam 3 bulan pertama!"',
+                author: 'Eka Putri',
+                role: 'Owner PT. Fashion Online Indonesia'
+            },
+            'agency-pariwisata': {
+                title: 'Website Agency Pariwisata',
+                category: 'Website',
+                categoryClass: 'website',
+                icon: '🌐',
+                year: '2024',
+                client: 'PT. Jelajah Indonesia Tour',
+                team: '2 UI/UX Desainer + 1 Front-end Developer + 1 Back-end Developer',
+                description: 'Website corporate agency pariwisata dengan galeri interaktif dan sistem booking online yang terintegrasi',
+                format: 'Responsive Web Design',
+                pages: '20+ Pages',
+                paper: 'Web Platform',
+                print: 'Fully Functional',
+                overview: 'Website agency pariwisata ini showcase destinasi wisata dengan galeri foto yang menakjubkan dan sistem booking yang user-friendly. Dengan design yang attractive dan informasi yang lengkap, website ini meningkatkan customer trust dan memudahkan proses booking.',
+                challenge: 'Website harus dapat menampilkan ratusan paket wisata dengan informasi detail, foto-foto yang beautiful, dan sistem booking yang aman. Klien juga membutuhkan admin dashboard untuk mengelola paket, booking, dan customer inquiries.',
+                solution: 'Kami membuat design yang inspiratif dengan full-screen image galleries dan immersive product presentation. Booking system diintegrasikan dengan payment gateway yang aman dan email notification system. Admin dashboard yang user-friendly memudahkan klien untuk mengelola seluruh operasi. Website juga dioptimalkan untuk SEO untuk meningkatkan organic traffic.',
+                testimonial: '"Website ini sangat membantu dalam meningkatkan online bookings kami. Customer feedback sangat positif tentang design dan user-friendliness nya!"',
+                author: 'Hadi Sutrisno',
+                role: 'CEO PT. Jelajah Indonesia Tour'
+            }
+        };
+
+        const projectOrder = ['novel-mimpi-langit', 'buku-resep-nusantara', 'poster-festival-musik', 'movie-poster', 'toko-online-fashion', 'agency-pariwisata'];
+
+        let currentProjectIndex = 0;
+
+        function getProjectId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('project') || 'novel-mimpi-langit';
+        }
+
+        function loadProject(projectId) {
+            const project = projects[projectId];
+            if (!project) {
+                alert('Proyek tidak ditemukan');
+                return;
+            }
+
+            // Update breadcrumb
+            document.getElementById('breadcrumbTitle').textContent = project.title;
+
+            // Update project info
+            document.getElementById('projectCategory').textContent = project.category;
+            document.getElementById('projectCategory').className = 'project-category-badge ' + project.categoryClass;
+            document.getElementById('projectTitle').textContent = project.title;
+            document.getElementById('projectDescription').textContent = project.description;
+            document.getElementById('projectYear').textContent = project.year;
+            document.getElementById('projectClient').textContent = project.client;
+            document.getElementById('projectTeam').textContent = project.team;
+            document.getElementById('projectMainImage').textContent = project.icon;
+
+            // Update details grid
+            document.getElementById('detailFormat').textContent = project.format;
+            document.getElementById('detailPages').textContent = project.pages;
+            document.getElementById('detailPaper').textContent = project.paper;
+            document.getElementById('detailPrint').textContent = project.print;
+
+            // Update content sections
+            document.getElementById('overviewText').textContent = project.overview;
+            document.getElementById('challengeText').textContent = project.challenge;
+            document.getElementById('solutionText').textContent = project.solution;
+
+            // Update testimonial
+            document.getElementById('testimonialText').textContent = project.testimonial;
+            document.getElementById('authorName').textContent = project.author;
+            document.getElementById('authorRole').textContent = project.role;
+
+            // Update current project index
+            currentProjectIndex = projectOrder.indexOf(projectId);
+
+            // Update page title
+            document.title = project.title + ' - Kreative Studio';
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function loadNextProject(event) {
+            event.preventDefault();
+            const nextIndex = (currentProjectIndex + 1) % projectOrder.length;
+            const nextProjectId = projectOrder[nextIndex];
+            window.location.href = `portfolio-detail.html?project=${nextProjectId}`;
+        }
+
+        function openModal(element) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            // Gunakan background color atau icon sebagai placeholder
+            modal.style.display = 'block';
+            modalImage.style.background = window.getComputedStyle(element).background;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Load project on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectId = getProjectId();
+            loadProject(projectId);
+        });
+
+        // Close modal when clicking the X
+        document.querySelector('.modal-close').addEventListener('click', function(event) {
+            event.stopPropagation();
+            closeModal();
+        });
+    </script>
+</body>
+</html>
