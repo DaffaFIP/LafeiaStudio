@@ -1,17 +1,154 @@
-<!-- Navigation -->
+Navigation
 <header>
     <nav>
         <div class="logo">
             <a href="index.html">
-            <i class="fas fa-palette"></i>
-            <span>Lafeia Studio</span>
+                <i class="fas fa-palette"></i>
+                <span>Lafeia Studio</span>
             </a>
         </div>
         <ul>
             <li><a href="index.html#services">Layanan</a></li>
             <li><a href="index.html#portfolio">Portfolio</a></li>
             <li><a href="index.html#about">Tentang</a></li>
-            <li><a href="index.html#contact" class="cta-btn">Hubungi Kami</a></li>
+            <li><a href="#contact" class="cta-btn">Hubungi Kami</a></li>
         </ul>
     </nav>
+
 </header>
+
+
+<style>
+/* hide navbar */
+header.hide {
+    transform: translateY(-100%);
+}
+
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 18px;
+        padding: 0;
+        margin-top: 10px;
+        
+    }
+
+    nav ul li a {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    nav ul li .cta-btn {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        color:#fdba74 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        font-weight: 600;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+}
+
+
+
+/* Header & Navigation */
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1.2rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+    transition: transform 0.3s ease;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+
+}
+
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo i {
+    font-size: 2rem;
+}
+
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+.cta-btn {
+    background: #ff6b6b;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+}
+
+</style>

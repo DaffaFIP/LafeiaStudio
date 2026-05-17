@@ -2,659 +2,550 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kreative Studio - Agensi Desain Kreatif</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <div id="header"></div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lafeia Studio - Agensi Desain Kreatif</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <div id="header"></div>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="../js/FirebaseConfig.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="js/FirebaseConfig.js"></script>
+
+  <style>
+    .brand-section {
+      padding: 80px 20px;
+      background: #ffffff;
+      text-align: center;
+    }
+
+
+    .brand-section h2 {
+      font-size: 38px;
+      font-weight: 500;
+      color: #222;
+      margin-bottom: 60px;
+    }
+
+    .brand-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-slider {
+      display: flex;
+      gap: 45px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 10px;
+
+    }
+
+    .brand-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .brand-item {
+      min-width: calc(100% / 3 - 20px);
+      flex: 0 0 calc(100% / 3 - 20px);
+      transition: 0.3s;
+    }
+
+    .brand-item:hover {
+      transform: translateY(-8px);
+    }
+
+    .brand-logo {
+      width: 260px;
+      height: 260px;
+      margin: auto;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-item h3 {
+      margin-top: 25px;
+      font-size: 24px;
+      font-weight: 400;
+      color: #222;
+      line-height: 1.4;
+    }
+
+    .scroll-btn {
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 10;
+      transition: 0.3s;
+    }
+
+    .scroll-btn:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .scroll-btn.left {
+      left: -20px;
+    }
+
+    .scroll-btn.right {
+      right: -20px;
+    }
+
+    /* Tablet */
+    @media(max-width:992px) {
+
+      .brand-item {
+        min-width: calc(100% / 2 - 20px);
+        flex: 0 0 calc(100% / 2 - 20px);
+      }
+    }
+
+    /* Mobile */
+    @media(max-width:768px) {
+
+      .brand-section h2 {
+        font-size: 28px;
+        margin-bottom: 40px;
+      }
+
+      .brand-item {
+        min-width: 100%;
+        flex: 0 0 100%;
+      }
+
+      .brand-logo {
+        width: 200px;
+        height: 200px;
+      }
+
+      .brand-item h3 {
+        font-size: 18px;
+      }
+
+      .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Wujudkan Visi Kreatif Anda</h1>
-            <p>Kami menghadirkan solusi desain inovatif untuk buku, poster, dan website yang memikat</p>
-            <button class="hero-btn" onclick="document.querySelector('.services').scrollIntoView()">Jelajahi
-                Layanan</button>
+  <!-- Hero Section -->
+  <section class="hero">
+                              <!-- login info  -->
+     <a href="login.html" style="text-decoration: none;"><p  class="InfoLogin" id="user-info" style="text-align: center; color: #ffffff;"></p></a>
+    <div class="hero-content">
+      <h1>Header nomor satu</h1>
+      <p>penjelasan singkat layanan yang diberikan</p>
+      <button class="hero-btn" onclick="document.querySelector('.services').scrollIntoView()">Jelajahi
+        Layanan</button>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <h2 class="section-title">Layanan Kami</h2>
+    <div class="services-grid">
+      <!-- Service 1: Book Layout -->
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-book"></i>
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <h2 class="section-title">Layanan Kami</h2>
-        <div class="services-grid">
-            <!-- Service 1: Book Layout -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-                <h3>Book Layouting <br> & Editing</h3>
-                <p>Desain tata letak buku profesional yang menarik dan nyaman dibaca</p>
-                <div class="service-details">
-                    <ul>
-                        <li>✓Lorem Ipsum</li>
-                        <li>✓Lorem Ipsum</li>
-                        <li>✓Lorem Ipsum</li>
-                        <li>✓Lorem Ipsum</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Service 2: Poster Design -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-image"></i>
-                </div>
-                <h3>Social Media & <br>Content Creative</h3>
-                <p>Poster eye-catching yang mengkomunikasikan pesan Anda dengan visual yang kuat</p>
-                <div class="service-details">
-                    <ul>
-                        <li>✓ Desain konten sosial media (reels dan feed)</li>
-                        <li>✓ Lorem ipsum</li>
-                        <li>✓ Resolusi cetak tinggi</li>
-                        <li>✓ Revisi</li>
-                    </ul>
-                </div>
-                
-            </div>
-
-            <!-- Service 3: Website Design -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-globe"></i>
-                </div>
-                <h3>Desain Website</h3>
-                <p>Website responsif dan modern yang meningkatkan kehadiran digital bisnis Anda</p>
-                <div class="service-details">
-                    <ul>
-                        <li>✓ Desain responsive</li>
-                        <li>✓ UX/UI optimal</li>
-                        <li>✓ Kecepatan loading cepat</li>
-                        <li>✓ SEO friendly</li>
-                    </ul>
-                </div>
-            </div>
-
-
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <div class="portfolio-container">
-            <h2 class="section-title">Portfolio Terbaru</h2>
-
-            <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterPortfolio('all')">Semua</button>
-                <button class="filter-btn" onclick="filterPortfolio('book')">Buku</button>
-                <button class="filter-btn" onclick="filterPortfolio('poster')">Poster</button>
-                <button class="filter-btn" onclick="filterPortfolio('website')">Website</button>
-            </div>
-
-            <div class="portfolio-grid" id="portfolioGrid">
-                <!-- Book Projects -->
-                <div class="portfolio-item" data-category="book" onclick="window.location.href='detail-add.html'">
-                    <div class="portfolio-image">
-                        <i class="fa-solid fa-plus" style="font-size: 300%;"></i>
-                    </div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category operator">Operator</span>
-                        <h4>Tambah Data Baru</h4>
-                        <p>Menambahkan Data Baru Pada Website</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="book" onclick="window.location.href='detail-project.html'">
-                    <div class="portfolio-image">📖</div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category">Buku</span>
-                        <h4>Buku Resep Nusantara</h4>
-                        <p>Desain cookbook dengan layout fotografi produk yang menggugah selera</p>
-                    </div>
-                </div>
-                <!-- menampilkan data review -->
-                <div class="projects">
-                    <div id="list"></div>
-                </div>
-                <!-- Poster Projects -->
-
-                <div class="portfolio-item" data-category="poster" onclick="window.location.href='detail-project.html'">
-                    <div class="portfolio-image">🎨</div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category poster">Poster</span>
-                        <h4>Poster Festival Musik</h4>
-                        <p>Desain poster event dengan visual yang energik dan eye-catching</p>
-                    </div>
-                </div>
-
-
-                <div class="portfolio-item" data-category="poster" onclick="window.location.href='detail-project.html'">
-                    <div class="portfolio-image">🎬</div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category poster">Poster</span>
-                        <h4>Movie Poster Campaign</h4>
-                        <p>Poster film dengan visual dramatis dan typography yang menarik</p>
-                    </div>
-                </div>
-
-                <!-- Website Projects -->
-                <div class="portfolio-item" data-category="website"
-                    onclick="window.location.href='detail-project.html'">
-                    <div class="portfolio-image">💼</div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category website">Website</span>
-                        <h4>Portal Toko Online Fashion</h4>
-                        <p>Website e-commerce responsif dengan user interface yang intuitif</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="website"
-                    onclick="window.location.href='detail-project.html'">
-                    <div class="portfolio-image">🌐</div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category website">Website</span>
-                        <h4>Website Agency Pariwisata</h4>
-                        <p>Website corporate dengan galeri interaktif dan booking system</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="book" onclick="window.location.href='detail-project.html'">
-                    <div class="portfolio-image">📕</div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category">Buku</span>
-                        <h4>Buku Self-Development</h4>
-                        <p>Layout buku motivasi dengan infografis dan design elements yang menarik</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="poster" onclick="window.location.href='detail-project.html'">
-                    <div class="portfolio-image">🖼️</div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category poster">Poster</span>
-                        <h4>Poster Social Campaign</h4>
-                        <p>Desain poster kampanye sosial dengan pesan yang kuat dan visual impactful</p>
-                    </div>
-                </div>
-            </div>`
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-text">
-                <h2>Mengapa Pilih Kami?</h2>
-                <p>Kreative Studio adalah tim desainer profesional yang berdedikasi untuk mengubah ide Anda menjadi
-                    karya visual yang luar biasa.</p>
-                <p>Dengan pengalaman bertahun-tahun, kami memahami setiap detail yang membuat desain menjadi sempurna
-                    dan efektif.</p>
-
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-check"></i></div>
-                        <p><strong>Tim Profesional</strong> - Desainer berpengalaman dan terlatih</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-check"></i></div>
-                        <p><strong>Kualitas Terjamin</strong> - Hasil kerja yang memuaskan dan professional</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-check"></i></div>
-                        <p><strong>Waktu Tepat</strong> - Deadline selalu terpenuhi dengan baik</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-check"></i></div>
-                        <p><strong>Revisi</strong> - Revisi Kesalahan pada desain</p>
-                    </div>
-                </div>
-            </div>
-            <div class="about-image">
-                <i class="fas fa-lightbulb"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: Brand Partner -->
-    <section id="brand-partner" class="brand-section">
-      <div class="container">
-    
-        <h2>Brand yang telah bekerja bersama kami:</h2>
-    
-        <div class="brand-wrapper">
-    
-          <!-- Button Left -->
-          <button class="scroll-btn left" onclick="scrollBrands(-1)">
-            &#10094;
-          </button>
-    
-          <!-- Slider -->
-          <div class="brand-slider" id="brandSlider">
-    
-            <!-- Item 1 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="images/carrea.png" alt="Carrea Batik Semarang">
-              </div>
-              <h3>Carrea Batik Semarang</h3>
-            </div>
-    
-            <!-- Item 2 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Keluarga Literasi Ungaran</h3>
-            </div>
-    
-            <!-- Item 3 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Xanggita Redaction</h3>
-            </div>
-    
-            <!-- Item 4 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Brand Empat</h3>
-            </div>
-    
-            <!-- Item 5 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Brand Lima</h3>
-            </div>
-    
-            <!-- Item 6 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Brand Enam</h3>
-            </div>
-    
-            <!-- Item 7 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Brand Tujuh</h3>
-            </div>
-    
-            <!-- Item 8 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Brand Delapan</h3>
-            </div>
-    
-            <!-- Item 9 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Brand Sembilan</h3>
-            </div>
-    
-            <!-- Item 10 -->
-            <div class="brand-item">
-              <div class="brand-logo">
-                <img src="https://drive.google.com/thumbnail?id=1OZEFIWviLuhv67PWxphAXV9SnV0eMfYG&sz=w1000">
-              </div>
-              <h3>Brand Sepuluh</h3>
-            </div>
-    
-          </div>
-    
-          <!-- Button Right -->
-          <button class="scroll-btn right" onclick="scrollBrands(1)">
-            &#10095;
-          </button>
-    
+        <h3>Layanan Satu</h3>
+        <p>Penjelasan singkat satu kalimat layanan yang diberikan nomor satu</p>
+        <div class="service-details">
+          <ul>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+          </ul>
         </div>
       </div>
-    </section>
-    
-    <style>
-      *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-      }
-    
-      body{
-        font-family:'Poppins',sans-serif;
-        background:#f5f5f5;
-      }
-    
-      .brand-section{
-        padding:80px 20px;
-        background:#f3f3f3;
-        text-align:center;
-      }
-    
-      .container{
-        max-width:1300px;
-        margin:auto;
-      }
-    
-      .brand-section h2{
-        font-size:38px;
-        font-weight:500;
-        color:#222;
-        margin-bottom:60px;
-      }
-    
-      .brand-wrapper{
-        position:relative;
-        display:flex;
-        align-items:center;
-      }
-    
-      .brand-slider{
-        display:flex;
-        gap:30px;
-        overflow-x:auto;
-        scroll-behavior:smooth;
-        scrollbar-width:none;
-        padding:10px;
-      }
-    
-      .brand-slider::-webkit-scrollbar{
-        display:none;
-      }
-    
-      .brand-item{
-        min-width:calc(100% / 3 - 20px);
-        flex:0 0 calc(100% / 3 - 20px);
-        transition:0.3s;
-      }
-    
-      .brand-item:hover{
-        transform:translateY(-8px);
-      }
-    
-      .brand-logo{
-        width:260px;
-        height:260px;
-        margin:auto;
-        border-radius:50%;
-        overflow:hidden;
-        background:#fff;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        box-shadow:0 10px 25px rgba(0,0,0,0.08);
-      }
-    
-      .brand-logo img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-      }
-    
-      .brand-item h3{
-        margin-top:25px;
-        font-size:24px;
-        font-weight:400;
-        color:#222;
-        line-height:1.4;
-      }
-    
-      .scroll-btn{
-        position:absolute;
-        top:45%;
-        transform:translateY(-50%);
-        width:50px;
-        height:50px;
-        border:none;
-        border-radius:50%;
-        background:#fff;
-        box-shadow:0 5px 15px rgba(0,0,0,0.15);
-        cursor:pointer;
-        font-size:24px;
-        z-index:10;
-        transition:0.3s;
-      }
-    
-      .scroll-btn:hover{
-        background:#000;
-        color:#fff;
-      }
-    
-      .scroll-btn.left{
-        left:-20px;
-      }
-    
-      .scroll-btn.right{
-        right:-20px;
-      }
-    
-      /* Tablet */
-      @media(max-width:992px){
-    
-        .brand-item{
-          min-width:calc(100% / 2 - 20px);
-          flex:0 0 calc(100% / 2 - 20px);
-        }
-      }
-    
-      /* Mobile */
-      @media(max-width:768px){
-    
-        .brand-section h2{
-          font-size:28px;
-          margin-bottom:40px;
-        }
-    
-        .brand-item{
-          min-width:100%;
-          flex:0 0 100%;
-        }
-    
-        .brand-logo{
-          width:200px;
-          height:200px;
-        }
-    
-        .brand-item h3{
-          font-size:18px;
-        }
-    
-        .scroll-btn{
-          width:40px;
-          height:40px;
-          font-size:18px;
-        }
-      }
-    </style>
-    
-    <script>
-      function scrollBrands(direction) {
-        const slider = document.getElementById("brandSlider");
-        const scrollAmount = 400;
-    
-        slider.scrollBy({
-          left: direction * scrollAmount,
-          behavior: "smooth"
-        });
-      }
-    </script>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="about-container">
-            <div class="contact-content">
-                <h2>Siap Memulai Proyek Anda?</h2>
-                <p>Hubungi kami hari ini dan mari wujudkan visi kreatif Anda bersama tim profesional kami</p>
+      <!-- Service 2: Poster Design -->
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-image"></i>
+        </div>
+        <h3>Layanan Dua</h3>
+        <p>Penjelasan singkat satu kalimat layanan yang diberikan nomor dua</p>
+        <div class="service-details">
+          <ul>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Service 3: Website Design -->
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <h3>Layanan Tiga</h3>
+        <p>Penjelasan singkat satu kalimat layanan yang diberikan nomor tiga</p>
+        <div class="service-details">
+          <ul>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+            <li>Point Layanan Nomor</li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio-container">
+      <h2 class="section-title">Past Project</h2>
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterPortfolio('all')">Semua</button>
+        <button class="filter-btn" onclick="filterPortfolio('Type1')">Layanan1</button>
+        <button class="filter-btn" onclick="filterPortfolio('Type2')">Layanan2</button>
+        <button class="filter-btn" onclick="filterPortfolio('Type3')">Layanan3</button>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <!-- Tambah Data Baru -->
+        <div class="portfolio-item" id="btnTambah" style="display:none;"
+          onclick="window.location.href='detail-add.html'">
+          <div class="portfolio-image">
+            <i class="fa-solid fa-plus" style="font-size: 300%;"></i>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-category operator">Operator</span>
+            <h4>Tambah Data Baru</h4>
+            <p>Menambahkan Data Baru Pada Website</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>Mengapa Pilih Kami?</h2>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum ullam itaque nulla, architecto est nostrum
+          hic sed perferendis modi! Voluptatem culpa rem, beatae dolores ab enim. Doloremque eaque eligendi animi.</p>
+
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-check"></i></div>
+            <p><strong>Point</strong> - Penjelsaan singkat point</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-check"></i></div>
+            <p><strong>Point</strong> - Penjelsaan singkat point</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-check"></i></div>
+            <p><strong>Point</strong> - Penjelsaan singkat point</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-check"></i></div>
+            <p><strong>Point</strong> - Penjelsaan singkat point</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Brand Partner -->
+  <section id="brand-partner" class="brand-section">
+    <div class="container">
+
+      <h2>Brand yang telah bekerja bersama kami:</h2>
+
+      <div class="brand-wrapper">
+
+        <!-- Button Left -->
+        <button class="scroll-btn left" onclick="scrollBrands(-1)">
+          &#10094;
+        </button>
+
+        <!-- Slider -->
+        <div class="brand-slider" id="brandSlider">
+
+          <!-- Item 1 -->
+          <div class="brand-item" id="btnTambahBrand" style="display:none;"
+            onclick="window.location.href='brand-add.html'">
+            <div class="brand-logo">
+              <h1 class="fa-solid fa-plus" style="font-size: 300%;"></h1>
             </div>
-            <div class="about-text">
-                <h2>Hubungi Kami</h2>
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon"> <i class="fas fa-phone"></i></div>
-                        <p><strong>+62859155054717</strong></p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"> <i class="fas fa-envelope"></i></div>
-                        <p><strong> info@mail.com</strong></p>
-                    </div>
-                </div>
-            </div>
+            <h3>tambah brand</h3>
+          </div>
 
         </div>
-    </section>
 
-    <script>
+        <!-- Button Right -->
+        <button class="scroll-btn right" onclick="scrollBrands(1)">
+          &#10095;
+        </button>
 
-        // ========================
-        // INIT FIREBASE
-        // ========================
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-
+      </div>
+    </div>
+  </section>
 
 
-        // ========================
-        // update message
-        // ========================
-        const params = new URLSearchParams(window.location.search);
-        const msg = params.get("msg");
-        if (msg === "berhasil") {
-            const alertBox = document.createElement("div");
-            alertBox.innerText = "✅ Data berhasil ditambahkan";
-            alertBox.style.position = "fixed";
-            alertBox.style.top = "20px";
-            alertBox.style.right = "20px";
-            alertBox.style.background = "#16a34a";
-            alertBox.style.color = "white";
-            alertBox.style.padding = "12px 18px";
-            alertBox.style.borderRadius = "8px";
-            alertBox.style.zIndex = "9999";
-            alertBox.style.fontFamily = "sans-serif";
-            document.body.appendChild(alertBox);
 
-            // hilang otomatis
-            setTimeout(() => {
-                alertBox.style.opacity = "0";
-                alertBox.remove();
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }, 2000);
-        }
+  <script>
+    function scrollBrands(direction) {
+      const slider = document.getElementById("brandSlider");
+      const scrollAmount = slider.clientWidth;
+      console.log("Scroll Amount:", scrollAmount);
+      slider.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  </script>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+
+  </section>
+
+  <script>
+
+    // ========================
+    // INIT FIREBASE
+    // ========================
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
 
 
-        // ========================
-        // Load data portfolio
-        // ========================
-        function loadData(isLogin) {
-            const list = document.getElementById("list");
-            list.innerHTML = "";
 
-            db.collection("review").orderBy("waktu", "desc").get()
-                .then(snapshot => {
+    // ========================
+    // update message
+    // ========================
+    const params = new URLSearchParams(window.location.search);
+    const msg = params.get("msg");
+    if (msg === "berhasil") {
+      const alertBox = document.createElement("div");
+      alertBox.innerText = "✅ Data berhasil ditambahkan";
+      alertBox.style.position = "fixed";
+      alertBox.style.top = "20px";
+      alertBox.style.right = "20px";
+      alertBox.style.background = "#16a34a";
+      alertBox.style.color = "white";
+      alertBox.style.padding = "12px 18px";
+      alertBox.style.borderRadius = "8px";
+      alertBox.style.zIndex = "9999";
+      alertBox.style.fontFamily = "sans-serif";
+      document.body.appendChild(alertBox);
 
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
+      // hilang otomatis
+      setTimeout(() => {
+        alertBox.style.opacity = "0";
+        alertBox.remove();
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }, 2000);
+    }
 
-                        list.innerHTML += `
-                
-                <div class="portfolio-item" 
-                     data-category="${data.kategori || 'umum'}"
-                     onclick="window.location.href='review-view.html?id=${doc.id}'">
 
+    // ========================
+    // Load data portfolio
+    // ========================
+    function loadData(isLogin) {
+      const list = document.getElementById("portfolioGrid");
+      list.innerHTML += "";
+      db.collection("agency").orderBy("Waktu", "desc").get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            list.innerHTML += `
+                <div class="portfolio-item"data-category="${data.Type || 'umum'}"
+                     onclick="window.location.href='detail-project.html?id=${doc.id}'">
                     <div class="portfolio-image">
                         <img src="${data.LinkGambar}" 
-                             alt="${data.judul}"
+                             alt="${data.Judul}"
                              style="width:100%; height:100%; object-fit:cover;">
                     </div>
-
                     <div class="portfolio-info">
-
-                        <span class="portfolio-category">
-                            ${data.kategori || 'Portfolio'}
-                        </span>
-
-                        <h4>${data.judul}</h4>
-
+                      <span class="portfolio-category">
+                        ${{
+                Type1: 'Buku',
+                Type2: 'Poster',
+                Type3: 'Website'
+              }[data.Type] || 'Portfolio'
+              }
+                      </span>
+                        <h4>${data.Judul}</h4>
                         <p>
-                            ${data.IsiPenuh
-                                ? data.IsiPenuh.slice(0, 120) + "..."
-                                : ""}
+                            ${data.DesSingkat ? data.DesSingkat.slice(0, 120) + "..."
+                : ""}
                         </p>
-
                         ${isLogin ? `
-                            <button class="btn-delete"
-                                onclick="event.stopPropagation(); hapusData('${doc.id}')">
-                                Hapus
-                            </button>
+                            <button class="btn-delete"  onclick="event.stopPropagation(); hapusData('${doc.id}')">Hapus</button>
                         ` : ""}
-
                     </div>
                 </div>
-
                 `;
-                    });
+          });
 
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        }
-        // ========================
-        // DELETE
-        // ========================
-        function hapusData(id) {
-            if (confirm("Yakin ingin menghapus data?")) {
-                db.collection("review")
-                    .doc(id)
-                    .delete()
-                    .then(() => {
-                        const user = auth.currentUser;
-                        loadData(!!user);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            }
-        }
-
-
-        // ========================
-        // AUTH STATE
-        // ========================
-        auth.onAuthStateChanged(user => {
-            const btnTambah = document.getElementById("btnTambah");
-
-            if (user) {
-                // btnTambah.style.display = "block";
-
-                loadData(true);
-            } else {
-                // btnTambah.style.display = "none";
-                loadData(false);
-            }
+        })
+        .catch(err => {
+          console.error(err);
         });
+    }
+    // ========================
+    // DELETE
+    // ========================
+    function hapusData(id) {
+      if (confirm("Yakin ingin menghapus data?")) {
+        db.collection("agency")
+          .doc(id)
+          .delete()
+          .then(() => {
+            alert("Data berhasil dihapus");
+            window.location.href = "index.html";
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+    }
+    // ========================
+    // Load data brand
+    // ========================
+    function loadBrand() {
+      const list = document.getElementById("brandSlider");
+
+      // kosongkan isi dulu
+      list.innerHTML += "";
+
+      db.collection("Brand").orderBy("Waktu", "desc").get()
+        .then(snapshot => {
+
+          snapshot.forEach(doc => {
+            const data = doc.data();
+
+            list.innerHTML += `
+          <div class="brand-item">
+
+            <div class="brand-logo">
+              <img src="${data.LinkGambar}" 
+                   alt="${data.Nama}">
+            </div>
+
+            <h3>${data.Nama}</h3>
+
+          </div>
+        `;
+          });
+
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+
+    // ========================
+    // AUTH STATE
+    // ========================
+    auth.onAuthStateChanged(user => {
+      const btnTambah = document.getElementById("btnTambah");
+      const btnTambahBrand = document.getElementById("btnTambahBrand");
+
+      if (user) {
+        btnTambah.style.display = "block";
+        btnTambahBrand.style.display = "block";
+
+        loadData(true);
+      } else {
+        btnTambah.style.display = "none";
+        btnTambahBrand.style.display = "none";
+        loadData(false);
+      }
+    });
+
+    window.onload = function () {
+      loadBrand();
+    };
 
 
-    </script>
 
-    <div id="footer"></div>
+    // filter portofolio
 
-    <script src="js/LoadHeadFoot.js"></script>
+    function filterPortfolio(category) {
+      const items = document.querySelectorAll('.portfolio-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // cek login
+      const isLogin = localStorage.getItem("isLogin") === "true";
+
+      // Update button active state
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Filter items
+      items.forEach(item => {
+
+        // khusus tombol tambah
+        if (item.id === "btnTambah") {
+          item.style.display = isLogin ? 'block' : 'none';
+          return;
+        }
+
+        // item portfolio biasa
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+          setTimeout(() => item.style.opacity = '1', 10);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+  <div id="footer"></div>
+
+<!-- import script -->
+<script src="js/LoadHTML.js"></script>
+<script src="js/InfoLogin.js"></script>
+
 </body>
 
 </html>

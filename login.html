@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="js/FirebaseConfig.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Inter, sans-serif;
+    }
+
+    .container {
+        max-width: 620px;
+        margin: auto;
+        background: #ffffff;
+        align-items: center;
+        padding: 32px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .container h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        text-align: center;
+        width: 100%;
+    }
+
+    .container input,
+    .container textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        background: #f8fafc;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        outline: none;
+    }
+
+    .container input:focus,
+    .container textarea:focus {
+        border-color: #2563eb;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+
+    .container button,
+    .button-link {
+        flex: 1;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s ease;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .btn-save {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-save:hover {
+        background: #1d4ed8;
+    }
+
+    .btn-back:hover {
+        background: #e0e0e0;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    #footer {
+        margin-top: auto;
+    }
+
+    .wrapper {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <div id="header"></div>
+
+    <!-- tampilan ketika tidak login -->
+    <div class="wrapper" id="LogoutState" style="display: block; margin-top: 100px;">
+
+        <div class="container">
+            <h2>Login</h2>
+            <div id="auth-box" style="padding:20px;">
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="Password">
+                <button onclick="login()">Login</button>
+                <!-- <button onclick="register()">Register</button> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- tampilan ketika login -->
+    <div class="wrapper" id="LoginState" style="display: none;">
+            <!-- login info  -->
+    <p class="InfoLogin" id="user-info" style="margin-top: 100px;text-align: center;"></p>
+        <div class="container">
+            <h2>Change Password</h2>
+            <div id="auth-box" style="padding:20px;">
+
+                <input type="password" id="new-password" placeholder="New Password">
+                <button onclick="changePassword()">Change Password</button>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer"></footer>
+
+</body>
+
+
+
+</html>
+
+<script>
+    // ========================
+    // INIT FIREBASE
+    // ========================
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    // ========================
+    // update message
+    // ========================
+    const params = new URLSearchParams(window.location.search);
+    const msg = params.get("msg");
+    if (msg === "Logout") {
+        const alertBox = document.createElement("div");
+        alertBox.innerText = "✅ Berhasil Logout";
+        alertBox.style.position = "fixed";
+        alertBox.style.top = "20px";
+        alertBox.style.right = "20px";
+        alertBox.style.background = "#16a34a";
+        alertBox.style.color = "white";
+        alertBox.style.padding = "12px 18px";
+        alertBox.style.borderRadius = "8px";
+        alertBox.style.zIndex = "9999";
+        alertBox.style.fontFamily = "sans-serif";
+        document.body.appendChild(alertBox);
+
+        // hilang otomatis
+        setTimeout(() => {
+            alertBox.style.opacity = "0";
+            alertBox.remove();
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }, 2000);
+    }
+    if (msg === "ChangePass") {
+        const alertBox = document.createElement("div");
+        alertBox.innerText = "✅ Berhasil Ganti Password";
+        alertBox.style.position = "fixed";
+        alertBox.style.top = "20px";
+        alertBox.style.right = "20px";
+        alertBox.style.background = "#16a34a";
+        alertBox.style.color = "white";
+        alertBox.style.padding = "12px 18px";
+        alertBox.style.borderRadius = "8px";
+        alertBox.style.zIndex = "9999";
+        alertBox.style.fontFamily = "sans-serif";
+        document.body.appendChild(alertBox);
+
+        // hilang otomatis
+        setTimeout(() => {
+            alertBox.style.opacity = "0";
+            alertBox.remove();
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }, 2000);
+    }
+    if (msg === "Login") {
+        const alertBox = document.createElement("div");
+        alertBox.innerText = "✅ Login berhasil";
+        alertBox.style.position = "fixed";
+        alertBox.style.top = "20px";
+        alertBox.style.right = "20px";
+        alertBox.style.background = "#16a34a";
+        alertBox.style.color = "white";
+        alertBox.style.padding = "12px 18px";
+        alertBox.style.borderRadius = "8px";
+        alertBox.style.zIndex = "9999";
+        alertBox.style.fontFamily = "sans-serif";
+        document.body.appendChild(alertBox);
+
+        // hilang otomatis
+        setTimeout(() => {
+            alertBox.style.opacity = "0";
+            alertBox.remove();
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }, 2000);
+    }
+
+    // ========================
+    // REGISTER
+    // ========================
+    function register() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                alert("Register berhasil");
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+    }
+
+    // ========================
+    // CHANGE PASSWORD
+    // ========================
+
+    function changePassword() {
+        const user = auth.currentUser;
+        const newPassword = document.getElementById("new-password").value;
+        if (newPassword.length < 6) {
+            alert("Password minimal 6 karakter");
+            return;
+        }
+
+        user.updatePassword(newPassword)
+            .then(() => {
+                window.location.href = "login.html?msg=ChangePass";
+            })
+            .catch((error) => {
+                console.error(error);
+                alert(error.message);
+
+            });
+    }
+
+    // ========================
+    // LOGIN
+    // ========================
+    function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => {
+                window.location.href = "login.html?msg=Login";
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+    }
+
+    // ========================
+    // LOGOUT
+    // ========================
+    function logout() {
+        auth.signOut();
+        window.location.href = "login.html?msg=Logout";
+
+    }
+
+    // ========================
+    // CEK LOGIN
+    // ========================
+
+    auth.onAuthStateChanged(user => {
+        const LogoutState = document.getElementById("LogoutState");
+
+        const LoginState = document.getElementById("LoginState");
+
+        if (user) {
+            LoginState.style.display = "block";
+            LogoutState.style.display = "none";
+            loadData(true);
+        } else {
+            LoginState.style.display = "none";
+            LogoutState.style.display = "block";
+
+            loadData(false);
+        }
+    });
+</script>
+
+<!-- import script -->
+<script src="js/LoadHTML.js"></script>
+<script src="js/InfoLogin.js"></script>

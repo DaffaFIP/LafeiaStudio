@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Portfolio - Kreative Studio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- firebase config -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+    <script src="js/FirebaseConfig.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -20,8 +29,6 @@
             line-height: 1.6;
         }
 
-    
-
 
         /* Main Container */
         .detail-container {
@@ -32,25 +39,21 @@
 
         /* Project Header */
         .project-header {
-            display: grid;
+            display: flex;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: start;
             margin-bottom: 3rem;
+        }
+
+        /* INFO */
+        .project-info {
+            flex: 1;
         }
 
         .project-info h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #2c2c3e;
-        }
-
-        .project-category-badge.poster {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
-        }
-
-        .project-category-badge.website {
-            background: linear-gradient(135deg, #ffd89b 0%, #ffc857 100%);
             color: #2c2c3e;
         }
 
@@ -70,7 +73,7 @@
 
         .meta-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 1rem;
         }
 
@@ -103,16 +106,23 @@
 
         .project-image {
             width: 100%;
-            height: 400px;
+            height: 100%;
+
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 15px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 5rem;
             color: white;
             box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+            flex: 1;
+            aspect-ratio: 16 / 9;
+
         }
+
+
 
         /* Content Sections */
         .content-section {
@@ -137,64 +147,142 @@
             line-height: 1.8;
         }
 
-        
+        @media (max-width: 768px) {
 
-       
+            .project-header {
+                flex-direction: column-reverse;
+                gap: 2rem;
+                margin-top: 45px;
+            }
 
+            .project-image {
+                aspect-ratio: 4 / 3;
+            }
 
-       
+            .content-section {
+                width: 100vw;
+                max-width: 100vw;
 
-       
+                margin-left: calc(50% - 50vw);
+                margin-right: calc(50% - 50vw);
+
+                border-radius: 0;
+
+            }
+
+        }
     </style>
 </head>
+
 <body>
     <!-- Header -->
-<div id="header"></div>
+    <div id="header"></div>
 
     <!-- Main Content -->
     <div class="detail-container" style="padding-top: 100px;">
         <!-- Project Header -->
+        <!-- login info  -->
+        <a href="login.html" style="text-decoration: none;">
+            <p class="InfoLogin" id="user-info" style="text-align: center; color: #000000;margin-bottom: 30px;"></p>
+        </a>
         <div class="project-header">
             <div class="project-info">
-                <h1 id="projectTitle">Novel "Mimpi di Langit"</h1>
-                <p class="project-description" id="projectDescription">
-                    Layouting buku fiksi dengan desain modern dan minimalis yang menciptakan pengalaman membaca yang nyaman dan menyenangkan
+                <h1 id="Judul">Judul Project</h1>
+                <p class="project-description" id="DesSingkat">
+                    Penjelasan project secara ringkas
                 </p>
-                
+
                 <div class="project-meta">
                     <div class="meta-item">
                         <div class="meta-icon"><i class="fas fa-calendar"></i></div>
                         <div class="meta-content">
                             <h3>Tahun Penyelesaian</h3>
-                            <p id="projectYear">2024</p>
+                            <p id="Tahun">2024</p>
                         </div>
                     </div>
                     <div class="meta-item">
                         <div class="meta-icon"><i class="fa-solid fa-file"></i></div>
                         <div class="meta-content">
                             <h3>Demo</h3>
-                            <p id="projectClient">Klik disini</p>
+                            <a id="Demo" href="#" target="_blank">Klik disini</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="project-image" id="projectMainImage">📚</div>
+            <div class="project-image">
+                <img id="Gambar" src="" alt="Project Image" style="width:100%; height:100%; object-fit:cover;">
+            </div>
         </div>
 
 
         <!-- Overview Section -->
         <div class="content-section" style="margin-top: 50px;">
-            <h2>Gambaran Umum Proyek</h2>
-            <p id="overviewText">
-                Proyek ini merupakan layouting buku novel fiksi yang menceritakan perjalanan spiritual seorang tokoh utama menemukan makna kehidupan. Dengan pendekatan desain yang modern namun tetap mempertahankan sentuhan tradisional, kami menciptakan desain yang dapat meningkatkan pengalaman membaca bagi setiap pembaca.
+            <h2>Deskripsi Proyek</h2>
+            <p id="GamUmum">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo enim est autem nulla
+                architecto accusamus, molestiae aspernatur debitis! Provident, consequuntur hic totam porro doloremque
+                architecto officiis quis ullam molestias.
             </p>
         </div>
 
+        <!-- Contact Section -->
+        <div id="contact"></div>
     </div>
 
-<div id="footer"></div>
+    <script>
+
+
+        // ========================
+        // INIT FIREBASE
+        // ========================
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // ========================
+        // AMBIL ID DARI URL
+        // ========================
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (!id) {
+            alert("ID tidak ditemukan");
+        } else {
+            ambilDataById(id);
+        }
+
+        // ========================
+        // READ 1 DATA
+        // ========================
+        function ambilDataById(id) {
+            db.collection("agency").doc(id).get()
+                .then(doc => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        document.getElementById("Judul").innerText = data.Judul;
+                        document.getElementById("DesSingkat").innerText = data.DesSingkat;
+                        document.getElementById("Gambar").src = data.LinkGambar;
+                        document.getElementById("Demo").href = data.LinkDemo;
+                        document.getElementById("Tahun").innerText = data.Tahun;
+                        document.getElementById("GamUmum").innerText = data.GamUmum;
+
+
+                    } else {
+                        alert("Data tidak ditemukan");
+                    }
+                })
+                .catch(err => {
+                    console.error("Gagal mengambil data:", err);
+                });
+
+        }
+    </script>
+    <div id="footer"></div>
 
 </body>
+
 </html>
-<script src="js/LoadHeadFoot.js"></script>
+<!-- import script -->
+<script src="js/LoadHTML.js"></script>
+<script src="js/InfoLogin.js"></script>
